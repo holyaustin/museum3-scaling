@@ -20,31 +20,36 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    arbitrum: {
-      url: "https://sepolia-rollup.arbitrum.io/rpc",
+    etherlinkTest: {
+      url: "https://node.ghostnet.etherlink.com",
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
-      //gasPrice: 35000000000,
-      //saveDeployments: true,
     },
-    gnosis: {
-      url: "https://rpc.chiado.gnosis.gateway.fm",
+    sphinx: {
+      url: "https://sphinx.shardeum.org/",
+      chainId: 8082,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
-      //gasPrice: 35000000000,
-      //saveDeployments: true,
     },
-    neondevnet: {
-      url: "https://neon-evm-devnet.drpc.org",
+    linea_sepolia: {
+      url: `https://linea-sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
-      allowUnlimitedContractSize: false,
-      timeout: 1000000,
-      isFork: true,
     },
-    morphTestnet: {
-      url: "https://rpc-testnet.morphl2.io",
+    rtfTestnet: {
+      url: `https://rpc-testnet.rtfight.com/`,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
-      allowUnlimitedContractSize: false,
-      timeout: 1000000,
-      isFork: true,
     },
-  }
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts",
+  },
+  mocha: {
+    timeout: 20000,
+  },
+  settings: {
+    optimizer: {
+      enabled: true,
+    },
+  },
 };

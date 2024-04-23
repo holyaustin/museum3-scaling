@@ -2,22 +2,22 @@
 const fs = require('fs');
 
 const main = async () => {
-  console.log("About to deploy contract Egypt on neon ");
-  const contractFactory = await ethers.getContractFactory('Egypt');
+  console.log("About to deploy contract Badagry on neon: ");
+  const contractFactory = await ethers.getContractFactory('Badagry');
   const contract = await contractFactory.deploy();
   await contract.deployed();
-  console.log("Egypt Contract deployed to: ", contract.address);
+  console.log("Badagry Contract deployed to: ", contract.address);
 
   // Deploy contract Minter
-  console.log("About to deploy contract Egypt Minter on neon: ");
-  const contractFactory2 = await ethers.getContractFactory('MinterEgypt');
+  console.log("About to deploy contract Badagry Minter neon: ");
+  const contractFactory2 = await ethers.getContractFactory('MinterBadagry');
   const contract2 = await contractFactory2.deploy();
   await contract2.deployed();
-  console.log("Egypt Minter Contract deployed to: ", contract2.address);
+  console.log("Badagry Minter Contract deployed to: ", contract2.address);
 
-  fs.writeFileSync('./configneonegypt.js', `
-  export const egyptAddressneon = "${contract.address}" \n
-  export const minterEgyptAddressneon = "${contract2.address}"
+  fs.writeFileSync('./configneonbadagry.js', `
+  export const badagryAddressneon = "${contract.address}" \n
+  export const minterBadagryAddressneon = "${contract2.address}"
 `);
 }
 
