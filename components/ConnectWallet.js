@@ -48,9 +48,9 @@ const ConnectWallet = () => {
 
   const checkNetwork = async () => {
     try {
-      if ((window.ethereum.networkVersion !== "421614") && (window.ethereum.networkVersion !== "245022926") && (window.ethereum.networkVersion !== "10200")) {
+      if ((window.ethereum.networkVersion !== "128123") && (window.ethereum.networkVersion !== "8082") && (window.ethereum.networkVersion !== "59141")) {
     
-        alert("Please connect to Arbitrum Sepolia Testnet or Gnosis Chiado Testnet or Morph Testnet or Neon Devnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
+        alert("Please connect to Linea Sepolia Testnet or Shardium Sphinx Testnet or EtherLink Testnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
         return;
       } 
       
@@ -69,9 +69,9 @@ const ConnectWallet = () => {
           params: [{ chainId: '421614' }],
         });
       } catch (switchError) {
-        if (switchError.code === 4902) {
+        if (switchError.code === 59141) {
           // You can make a request to add the chain to wallet here
-          console.log('Arbitrum Sepolia Testnet has not been added to the wallet!')
+          console.log('Linea Sepolia Testnet has not been added to the wallet!')
         }
       }
   }
@@ -79,9 +79,9 @@ const ConnectWallet = () => {
   const connectWallet = async () => {
     checkMetamaskAvailability();
     //checkNetwork();
-    if ((window.ethereum.networkVersion !== "421614") && (window.ethereum.networkVersion !== "2710") && (window.ethereum.networkVersion !== "245022926") && (window.ethereum.networkVersion !== "10200")) {
+    if ((window.ethereum.networkVersion !== "128123") && (window.ethereum.networkVersion !== "8082") && (window.ethereum.networkVersion !== "59141") ) {
     
-      alert("Please connect to Arbitrum Sepolia Testnet or Gnosis Chiado Testnet or Morph Testnet or Neon Devnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/chain/421614");
+      alert("Please connect to Linea Sepolia Testnet or Shardium Sphinx Testnet or EtherLink Testnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
       return;
     } 
    

@@ -22,6 +22,7 @@ module.exports = {
   networks: {
     etherlinkTest: {
       url: "https://node.ghostnet.etherlink.com",
+      chainId: 128123,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
     },
     sphinx: {
@@ -31,10 +32,12 @@ module.exports = {
     },
     linea_sepolia: {
       url: `https://linea-sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      chainId: 59141,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
     },
     rtfTestnet: {
       url: `https://rpc-testnet.rtfight.com/`,
+      chainId: 22999,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
     },
   },

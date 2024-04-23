@@ -6,13 +6,13 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 
 import fileNFTABI from "../artifacts/contracts/MinterEgypt.sol/MinterEgypt.json";
-import { minterEgyptAddressneon } from "../config";
+import { minterEgyptAddressShardeum } from "../config";
 
 import fileNFTABI2 from "../artifacts/contracts/MinterEgypt.sol/MinterEgypt.json";
-import { minterEgyptAddresschiado } from "../config";
+import { minterEgyptAddressEtherLink } from "../config";
 
 import fileNFTABI3 from "../artifacts/contracts/MinterEgypt.sol/MinterEgypt.json";
-import { minterEgyptAddressarbitrum } from "../config";
+import { minterEgyptAddressLinea } from "../config";
 
 import fileNFTABI4 from "../artifacts/contracts/MinterEgypt.sol/MinterEgypt.json";
 import { minterEgyptAddressmorph } from "../config";
@@ -29,39 +29,41 @@ export default function ViewFile() {
   const image = "/egypt/couplestatue.avif"
   const image2 = "/egypt/asset2.jpg"
   const image3 = "/egypt/asset3.jpg"
-   useEffect(() => {
+
+  useEffect(() => {
     // eslint-disable-next-line no-use-before-define
     console.log('Entered UseEffect');
     checkNetwork();
     try {
     // arbitrum sepolia testnet
-    if (window.ethereum.networkVersion == "421614")  {
-      console.log('currently inside Arbitrum Sepolia Testnet');
+    if (window.ethereum.networkVersion == "59141")  {
+      console.log('currently inside Linea Sepolia Testnet');
       setFileNFT(fileNFTABI3);
-      setContractAddress(minterEgyptAddressarbitrum);
+      setContractAddress(minterEgyptAddressLinea);
       return;
     } 
     // gnosis chiado testnet
-    else if (window.ethereum.networkVersion == "10200") {
-      console.log('currently inside Gnosis Chiado Testnet');
+    else if (window.ethereum.networkVersion == "8082") {
+      console.log('currently inside Shardeum Sphnix Testnet');
       setFileNFT(fileNFTABI2);
-      setContractAddress(minterEgyptAddresschiado);
+      setContractAddress(minterEgyptAddressShardeum);
       return;
     } 
     // neon devnet
-    else if (window.ethereum.networkVersion == "245022926") {
+    else if (window.ethereum.networkVersion == "128123") {
       setFileNFT(fileNFTABI);
-      setContractAddress(minterEgyptAddressneon);
-      console.log('currently inside Neon Devnet');
+      setContractAddress(minterEgyptAddressEtherLink);
+      console.log('currently inside EthernetLink Testnet');
       return;
     } 
-          // Morph Testnet
-          else if (window.ethereum.networkVersion == "2710") {
-            setFileNFT(fileNFTABI4);
-            setContractAddress(minterEgyptAddressmorph );
-            console.log('currently inside Morph Testnet');
-            return;
-          } 
+    /**   // Morph Testnet
+    else if (window.ethereum.networkVersion == "2710") {
+      setFileNFT(fileNFTABI4);
+      setContractAddress(minterEgyptAddressmorph );
+      console.log('currently inside Morph Testnet');
+      return;
+    } 
+     */
     else {
       router.push("/select");
       return;
@@ -82,9 +84,8 @@ export default function ViewFile() {
  
   const checkNetwork = async () => {
     try {
-      if ((window.ethereum.networkVersion !== "421614") && (window.ethereum.networkVersion !== "2710")  && (window.ethereum.networkVersion !== "245022926") && (window.ethereum.networkVersion !== "10200")) {
-    
-        alert("Please connect to Arbitrum Sepolia Testnet or Morph Testnet or Gnosis Chiado Testnet or Neon Devnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
+      if ((window.ethereum.networkVersion !== "128123") && (window.ethereum.networkVersion !== "8082") && (window.ethereum.networkVersion !== "59141")) {
+        alert("Please connect to Linea Sepolia Testnet or Shardium Sphinx Testnet or EtherLink Testnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
         router.push("/select");
         return;
       } 

@@ -14,13 +14,9 @@ import Popup from 'reactjs-popup';
 
 import fileNFTABI from "../artifacts/contracts/Egypt.sol/Egypt.json";
 import fileNFTABI2 from "../artifacts/contracts/Badgry.sol/Badagry.json";
-import { egyptAddressarbitrum } from "../config";
-import { egyptAddresschiado } from "../config";
-import { egyptAddressneon } from "../config";
-
-import { badagryAddressarbitrum } from "../config";
-import { badagryAddresschiado } from "../config";
-import { badagryAddressneon  } from "../config";
+import { egyptAddressShardeum } from "../config";
+import { egyptAddressEtherLink } from "../config";
+import { egyptAddressLinea } from "../config";
 
 export default function ViewFiles() {
   const router = useRouter();
@@ -39,34 +35,28 @@ export default function ViewFiles() {
     console.log('Entered UseEffect');
     checkNetwork();
     try {
-    // arbitrum sepolia testnet
-    if (window.ethereum.networkVersion == "421614")  {
-      console.log('currently inside Arbitrum Sepolia Testnet');
+    // Linea Sepolia testnet
+    if (window.ethereum.networkVersion == "59141")  {
+      console.log('currently inside Linea Sepolia Testnet');
       setFileNFT(fileNFTABI);
-      setContractAddress(egyptAddressarbitrum);
-      setFileNFT2(fileNFTABI2);
-      setContractAddress2(badagryAddressarbitrum);
-      loadfileNFTAbitrum();
+      setContractAddress(egyptAddressLinea);     
+      loadfileNFTLinea()
       return;
     } 
-    // gnosis chiado testnet
-    else if (window.ethereum.networkVersion == "10200") {
-      console.log('currently inside Gnosis Chiado Testnet');
+    // Etherlink testnet
+    else if (window.ethereum.networkVersion == "128123") {
+      console.log('currently inside Etherlink Testnet');
       setFileNFT(fileNFTABI);
-      setContractAddress(egyptAddresschiado);
-      setFileNFT2(fileNFTABI2);
-      setContractAddress2(badagryAddresschiado);
-      loadfileNFTChiado()
+      setContractAddress(egyptAddressEtherLink);
+      loadfileNFTEtherLink()
       return;
     } 
-    // neon devnet
-    else if (window.ethereum.networkVersion == "245022926") {
-      console.log('currently inside Neon Devnet');
+    // Shardeum 
+    else if (window.ethereum.networkVersion == "8082") {
+      console.log('currently inside Shardeum ');
       setFileNFT(fileNFTABI);
-      setContractAddress(egyptAddressneon);
-      setFileNFT2(fileNFTABI2);
-      setContractAddress2(badagryAddressneon);
-      loadfileNFTNeon()
+      setContractAddress(egyptAddressShardeum);
+      loadfileNFTShardeum();
       return;
     } 
     else {
@@ -82,10 +72,9 @@ export default function ViewFiles() {
 
   const checkNetwork = async () => {
     try {
-      if ((window.ethereum.networkVersion !== "421614") && (window.ethereum.networkVersion !== "245022926") && (window.ethereum.networkVersion !== "10200")) {
-    
-        alert("Please connect to Arbitrum Sepolia Testnet or Gnosis Chiado Testnet or Neon Devnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
-        router.push("/");
+      if ((window.ethereum.networkVersion !== "128123") && (window.ethereum.networkVersion !== "8082") && (window.ethereum.networkVersion !== "59141")) {
+        alert("Please connect to Linea Sepolia Testnet or Shardium Sphinx Testnet or EtherLink Testnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
+        router.push("/select");
         return;
       } 
       
@@ -100,19 +89,17 @@ export default function ViewFiles() {
     return ipfsGateWayURL;
   };
 
-  async function loadfileNFTAbitrum() {
+  async function loadfileNFTShardeum () {
     const web3Modal = new Web3Modal({
       cacheProvider: true,
     })
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(egyptAddressarbitrum, fileNFTABI.abi, signer);
+    const contract = new ethers.Contract(egyptAddressShardeum, fileNFTABI.abi, signer);
     const data = await contract.fetchAllStorageItems();
-
-    const contract2 = new ethers.Contract(badagryAddressarbitrum, fileNFTABI.abi, signer);
-    const data2 = await contract2.fetchAllStorageItems();
-    /*
+/*
+   
     *  map over items returned from smart contract and format
     *  them as well as fetch their token metadata
     */
@@ -148,52 +135,18 @@ export default function ViewFiles() {
     setLoadingState("loaded");
 
     console.log ("END OF ITEM 1 START OF ITEM 2")
-
-    const items2 = await Promise.all(data2.map(async i => {
-      console.log("i is ", i);
-      console.log("i.tokenId ", i.tokenId);
-      const tokenUri2 = await contract2.tokenURI(i.tokenId);
-      console.log("token Uri2 is ", tokenUri2);
-      const httpUri2 = getIPFSGatewayURL(tokenUri2);
-      console.log("Http Uri 2is ", httpUri2);
-      const meta2 = await axios.get(httpUri2);
-
-      const filename2 = i.fileName;
-      console.log("Filename2 is ", filename2);
-      const created2 = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
-      console.log("date2 created is ", created2);
-      const description2 = i.description;
-      console.log("description2 is ", description2);
-
-      const item2 = {
-        tokenId: i.tokenId.toNumber(),
-        image: getIPFSGatewayURL(meta2.data.image),
-        name: meta2.data.name,
-        description: meta2.data.description,
-        sharelink: getIPFSGatewayURL(meta2.data.image),
-
-      };
-      console.log("item2 returned is ", item2);
-      return item2;
-    }));
-
-    setNfts2(items2);
-    setLoadingState2("loaded");
   }
 
-  async function loadfileNFTChiado() {
+  async function loadfileNFTEtherLink() {
     const web3Modal = new Web3Modal({
       cacheProvider: true,
     })
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(egyptAddresschiado, fileNFTABI.abi, signer);
+    const contract = new ethers.Contract(egyptAddressEtherLink, fileNFTABI.abi, signer);
     const data = await contract.fetchAllStorageItems();
-
-    const contract2 = new ethers.Contract(badagryAddresschiado, fileNFTABI2.abi, signer);
-    const data2 = await contract2.fetchAllStorageItems();
-    /*
+/*   
     *  map over items returned from smart contract and format
     *  them as well as fetch their token metadata
     */
@@ -227,52 +180,19 @@ export default function ViewFiles() {
     setLoadingState("loaded");
 
     console.log ("END OF ITEM 1 START OF ITEM 2")
-
-    const items2 = await Promise.all(data2.map(async i => {
-      console.log("i is ", i);
-      console.log("i.tokenId ", i.tokenId);
-      const tokenUri2 = await contract2.tokenURI(i.tokenId);
-      console.log("token Uri2 is ", tokenUri2);
-      const httpUri2 = getIPFSGatewayURL(tokenUri2);
-      console.log("Http Uri 2is ", httpUri2);
-      const meta2 = await axios.get(httpUri2);
-
-      const filename2 = i.fileName;
-      console.log("Filename2 is ", filename2);
-      const created2 = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
-      console.log("date2 created is ", created2);
-      const description2 = i.description;
-      console.log("description2 is ", description2);
-
-      const item2 = {
-        tokenId: i.tokenId.toNumber(),
-        image: getIPFSGatewayURL(meta2.data.image),
-        name: meta2.data.name,
-        description: meta2.data.description,
-        sharelink: getIPFSGatewayURL(meta2.data.image),
-
-      };
-      console.log("item2 returned is ", item2);
-      return item2;
-    }));
-
-    setNfts2(items2);
-    setLoadingState2("loaded");
   }
 
-  async function loadfileNFTNeon() {
+  async function loadfileNFTLinea() {
     const web3Modal = new Web3Modal({
       cacheProvider: true,
     })
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(egyptAddressneon, fileNFTABI.abi, signer);
+    const contract = new ethers.Contract(egyptAddressLinea, fileNFTABI.abi, signer);
     const data = await contract.fetchAllStorageItems();
-
-    const contract2 = new ethers.Contract(badagryAddressneon, fileNFTABI2.abi, signer);
-    const data2 = await contract2.fetchAllStorageItems();
-    /*
+/*
+    
     *  map over items returned from smart contract and format
     *  them as well as fetch their token metadata
     */
@@ -308,37 +228,6 @@ export default function ViewFiles() {
     setLoadingState("loaded");
 
     console.log ("END OF ITEM 1 START OF ITEM 2")
-
-    const items2 = await Promise.all(data2.map(async i => {
-      console.log("i is ", i);
-      console.log("i.tokenId ", i.tokenId);
-      const tokenUri2 = await contract2.tokenURI(i.tokenId);
-      console.log("token Uri2 is ", tokenUri2);
-      const httpUri2 = getIPFSGatewayURL(tokenUri2);
-      console.log("Http Uri 2is ", httpUri2);
-      const meta2 = await axios.get(httpUri2);
-
-      const filename2 = i.fileName;
-      console.log("Filename2 is ", filename2);
-      const created2 = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
-      console.log("date2 created is ", created2);
-      const description2 = i.description;
-      console.log("description2 is ", description2);
-
-      const item2 = {
-        tokenId: i.tokenId.toNumber(),
-        image: getIPFSGatewayURL(meta2.data.image),
-        name: meta2.data.name,
-        description: meta2.data.description,
-        sharelink: getIPFSGatewayURL(meta2.data.image),
-
-      };
-      console.log("item2 returned is ", item2);
-      return item2;
-    }));
-
-    setNfts2(items2);
-    setLoadingState2("loaded");
   }
 
   async function NewsDetails(nft) {

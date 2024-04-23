@@ -53,7 +53,7 @@ export default function ViewFiles() {
 
             <button type="button" className="mt-1 w-full bg-red-800 text-white font-bold py-2 px-12 rounded disabled:opacity-75 " onClick={() => Egypt1()}>Museum of Egyptian Antiquities – Egypt</button>
             
-                <button type="button" className="mt-2 w-full bg-red-800 text-white font-bold py-3 px-12 rounded" onClick={() => Page1()}>Museum of African Slave Trade (Badagry) - Nigeria</button>
+                <button type="button" className="mt-1 w-full bg-red-800 text-white font-bold py-3 px-12 rounded disabled:opacity-75"  disabled onClick={() => Page1()}>Museum of African Slave Trade (Badagry) - Nigeria</button>
 
                 <button type="button" className="mt-1 w-full bg-red-800 text-white font-bold py-3 px-12 rounded  disabled:opacity-75 " disabled onClick={() => NewsDetails(nft)} >Museum of Modern Art of Algiers – Algeria</button>
 
