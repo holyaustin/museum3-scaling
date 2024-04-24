@@ -21,7 +21,7 @@ twitter (X) : @holyaustin
 
 ### 4. Repository with project’s code and demo site
 
-<https://github.com/holyaustin/museum3>
+<https://github.com/holyaustin/museum3-scaling>
 
 <https://museum3.vercel.app/>
 
@@ -34,48 +34,31 @@ twitter (X) : @holyaustin
 ### EthSign
 <https://testnet-scan.sign.global/schema/onchain_evm_421614_0x39>
 
-### Arbitrum Sepolia Testnet
+### Linea Sepolia Testnet
 
-<https://sepolia.arbiscan.io/address/0xfBeFdC343861EDc521dD2512B4B64B33bB663E4d>
+<https://sepolia.lineascan.build/address/0xe078fe7a93017f8e18c1c52e79632d0b94c56c26>
 
-<https://sepolia.arbiscan.io/address/0xc9637cB5e3EbAEE5124Daa92EA4Fee1Bd37B71FD>
+<https://sepolia.lineascan.build/address/0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11>
 
-<https://sepolia.arbiscan.io/address/0x7064f88f4840588b78014d6d3f4556FAAdF20893>
+### EtherLink Testnet
 
-<https://sepolia.arbiscan.io/address/0xEA9113F3DCAf50541092847095112E76Ba6ceC05>
+<https://testnet-explorer.etherlink.com/address/0x42Fc1d53EcF8B4c46989da0d44f07490668338c8> 
 
-### Neon DevNet
+<https://testnet-explorer.etherlink.com/address/0xEbb3113e97eeaA16Dcc2FebD6a1617AB731066AE>
 
-<https://neon-devnet.blockscout.com/address/0x3f114ab8b72d0e075bA3418F1Ea0d6D6d9699ED7>
+### Shardeum Testnet
 
-<https://neon-devnet.blockscout.com/address/0x342b41E0F99fb95F1667BC634Ca0872709e6d4b2>
+<https://explorer-sphinx.shardeum.org/account/0xe078fe7a93017f8e18c1c52e79632d0b94c56c26>
 
-<https://neon-devnet.blockscout.com/address/0x75f87ADB1Bf202ac17b18f84726C326491251478>
-
-<https://neon-devnet.blockscout.com/address/0xf9Ef878eb9189a60caaa8c288fcc8B571059014B>
-
-### Gnosis Chiado Testnet
-
-<https://gnosis-chiado.blockscout.com/address/0xe078fe7A93017F8e18c1C52E79632d0B94c56c26>
-
-<https://gnosis-chiado.blockscout.com/address/0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11>
-
-<https://gnosis-chiado.blockscout.com/address/0x42Fc1d53EcF8B4c46989da0d44f07490668338c8>
-
-<https://gnosis-chiado.blockscout.com/address/0xEbb3113e97eeaA16Dcc2FebD6a1617AB731066AE>
-
-### Morph Testnet
-https://explorer-testnet.morphl2.io/address/0xe078fe7A93017F8e18c1C52E79632d0B94c56c26
-
-https://explorer-testnet.morphl2.io/address/0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11
+<https://explorer-sphinx.shardeum.org/account/0x8d36089ab6efdb3feb2d8ed42f7ec80f3c6d2b11>
 
 ## Tech Stack Used
 
 Client: Next.js, TailwindCSS, web3.js, Theme UI
 
-web3:  Hardhat, ethers.js, IPFS / Filecoin, XMTP, EthSign
+web3:  Hardhat, ethers.js, IPFS / Filecoin, XMTP, Gateway.fm
 
-BlockChain: Arbitrum Sepolia Testnet, Neon Devnet, Morph Testnet and Gnosis Chiado Testnet
+BlockChain: Linea Sepolia Testnet, EtherLink Testnet, Shardeum Sphnix Testnet
 
 ## To run the dapp Locally
 
@@ -93,7 +76,7 @@ Deploying on Testnet / Mainnet
 
 # This command will deploy your smart contract on BSC testnet
 
-  npx hardhat run scripts/deploy.js --network morphTestnet
+  npx hardhat run scripts/deploy.js --network etherlink
 
 ## Areas where ZKPs can be effectively utilized
 

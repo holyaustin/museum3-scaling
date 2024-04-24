@@ -190,6 +190,12 @@ export default function Header() {
                 </Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
+                            <Link href="https://launchpad.gnosis.gateway.fm/">
+                <a> gateway.fm Staking</a>
+                </Link>
+                </li>
+
+                <li className="text-gray-600 hover:text-blue-600">
                             <Link href="https://web3chat-holyaustin.vercel.app/">
                 <a> Chat</a>
                 </Link>
