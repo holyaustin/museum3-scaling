@@ -13,9 +13,9 @@ import { Wallet, providers } from "ethers";
 import 'dotenv/config';
 
 import fileNFTABI from "../artifacts/contracts/Egypt.sol/Egypt.json";
-import { egyptAddressarbitrum } from "../config";
-import { egyptAddresschiado } from "../config";
-import { egyptAddressneon } from "../config";
+import { egyptAddressShardeum } from "../config";
+import { egyptAddressEtherLink } from "../config";
+import { egyptAddressLinea } from "../config";
 
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";
 
@@ -38,9 +38,8 @@ const MintFile = () => {
 
   const checkNetwork = async () => {
     try {
-      if ((window.ethereum.networkVersion !== "421614") && (window.ethereum.networkVersion !== "245022926") && (window.ethereum.networkVersion !== "10200")) {
-    
-        alert("Please connect to Arbitrum Sepolia Testnet or Gnosis Chiado Testnet or Neon Devnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
+      if ((window.ethereum.networkVersion !== "128123") && (window.ethereum.networkVersion !== "8082") && (window.ethereum.networkVersion !== "59141")) {
+        alert("Please connect to Linea Sepolia Testnet or Shardium Sphinx Testnet or EtherLink Testnet Blockchain! \n You can add it to your Wallet using \n https://chainlist.org/?testnets=true");
         router.push("/select");
         return;
       } 
@@ -49,8 +48,6 @@ const MintFile = () => {
       console.log(error);
     }
   };
-
-
 
   const handleFileUpload = (event) => {
     console.log("file for upload selected...");
@@ -85,14 +82,14 @@ const MintFile = () => {
 
   const sendTxToBlockchain = async (metadata) => {
     try {
-      if (window.ethereum.networkVersion == "421614")  {
+      if (window.ethereum.networkVersion == "8082")  {
       setTxStatus("Adding transaction to Blockchain");
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
-          console.log('currently inside Arbitrum Sepolia Testnet');
-          const connectedContract = new ethers.Contract(egyptAddressarbitrum , fileNFTABI.abi, provider.getSigner());
-          console.log("Connected to contract", egyptAddressarbitrum );
+          console.log('currently inside Shardeum Testnet');
+          const connectedContract = new ethers.Contract(egyptAddressShardeum , fileNFTABI.abi, provider.getSigner());
+          console.log("Connected to contract", egyptAddressShardeum );
           console.log("IPFS blockchain uri is ", metadata.url);
     
           const mintNFTTx = await connectedContract.createFile(metadata.url);
@@ -100,16 +97,16 @@ const MintFile = () => {
           await mintNFTTx.wait();
           return mintNFTTx;
         } 
-        // gnosis chiado testnet
-        else if (window.ethereum.networkVersion == "10200") {
-          console.log('currently inside Gnosis Chiado Testnet');
+        // EtherLink testnet
+        else if (window.ethereum.networkVersion == "128123") {
+          console.log('currently inside EtherLink Testnet');
           setTxStatus("Adding transaction to Blockchain");
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
           const provider = new ethers.providers.Web3Provider(connection);
 
-              const connectedContract = new ethers.Contract(egyptAddresschiado , fileNFTABI.abi, provider.getSigner());
-              console.log("Connected to contract", egyptAddresschiado );
+              const connectedContract = new ethers.Contract(egyptAddressEtherLink, fileNFTABI.abi, provider.getSigner());
+              console.log("Connected to contract", egyptAddressEtherLink );
               console.log("IPFS blockchain uri is ", metadata.url);
         
               const mintNFTTx = await connectedContract.createFile(metadata.url);
@@ -117,16 +114,16 @@ const MintFile = () => {
               await mintNFTTx.wait();
               return mintNFTTx;
         } 
-        // neon devnet
-        else if (window.ethereum.networkVersion == "245022926") {
-          console.log('currently inside Neon Devnet');
+        // Linea testnet
+        else if (window.ethereum.networkVersion == "59141") {
+          console.log('currently inside Linea');
           setTxStatus("Adding transaction to Blockchain");
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
           const provider = new ethers.providers.Web3Provider(connection);
               console.log('currently inside Arbitrum Sepolia Testnet');
-              const connectedContract = new ethers.Contract(egyptAddressneon , fileNFTABI.abi, provider.getSigner());
-              console.log("Connected to contract", egyptAddressneon );
+              const connectedContract = new ethers.Contract(egyptAddressLinea , fileNFTABI.abi, provider.getSigner());
+              console.log("Connected to contract", egyptAddressLinea );
               console.log("IPFS blockchain uri is ", metadata.url);
         
               const mintNFTTx = await connectedContract.createFile(metadata.url);
