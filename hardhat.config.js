@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config()
+require("@nomicfoundation/hardhat-verify");
+const { LINEASCAN_API_KEY } = process.env;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -40,6 +42,21 @@ module.exports = {
       chainId: 22999,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
     },
+  },
+  etherscan: {
+    apiKey: {
+      linea_sepolia: LINEASCAN_API_KEY
+    },
+    customChains: [
+      {
+        network: "linea_sepolia",
+        chainId: 59141,
+        urls: {
+          apiURL: "https://api.lineascan.build/api",
+          browserURL: "https://sepolia.lineascan.build"
+        }
+      }
+    ]
   },
   paths: {
     sources: "./contracts",

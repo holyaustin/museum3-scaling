@@ -36,9 +36,15 @@ twitter (X) : @holyaustin
 
 ### Linea Sepolia Testnet
 
+npx hardhat verify --network linea_sepolia 0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11
+
 <https://sepolia.lineascan.build/address/0xe078fe7a93017f8e18c1c52e79632d0b94c56c26>
 
 <https://sepolia.lineascan.build/address/0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11>
+
+https://sepolia.lineascan.build/address/0xe078fe7a93017f8e18c1c52e79632d0b94c56c26#code
+
+https://sepolia.lineascan.build/address/0x8D36089AB6eFdB3FEb2D8Ed42F7eC80f3c6d2b11#code
 
 ### EtherLink Testnet
 

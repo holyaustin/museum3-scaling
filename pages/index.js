@@ -89,9 +89,14 @@ export default function Home() {
                   href="/marketplace"
                   className=" a2c a1Y a10 a5 a1Z a1f a1y a1B a1C aP a1s aW aX aZ a1w hover:a36"
                 >
-               🔥  Explore MarketPlace
+               🔥  Museum MarketPlace
                 </a>
-          
+                <a
+                  href="https://efrogs.eth.limo/" target="_blank"
+                  className=" a2c a1Y a10 a5 a1Z a1f a1y a1B a1C aP a1s aW aX aZ a1w hover:a36"
+                >
+               🐸  efrog MarketPlace
+                </a>
           
         </h2>
       </header>
